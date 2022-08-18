@@ -3,6 +3,7 @@ import IRoutes from './interfaces/IRoutes';
 import { PostController } from './controllers/PostController';
 import { GetController, GetOneController } from './controllers/GetController';
 import { PutController } from './controllers/PutController';
+import { DelController } from './controllers/DelController';
 
 const routes: IRoutes[] = [
   {
@@ -24,6 +25,11 @@ const routes: IRoutes[] = [
     method: 'PUT',
     path: '/books/{bookId}',
     handler: PutController,
+  },
+  {
+    method: 'DELETE',
+    path: '/books/{bookId}',
+    handler: DelController,
   },
   {
     method: '*',
