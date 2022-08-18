@@ -1,10 +1,8 @@
-import { Request, ResponseToolkit } from '@hapi/hapi';
-import data from '../data';
-import IPutBook from '../interfaces/IPutBook';
+const data = require('../data');
 
-export const PutController: any = (req: Request, res: ResponseToolkit) => {
-  const putData = req.payload as IPutBook;
-  if (putData.name === undefined) {
+const PutController = (req, res) => {
+  const putData = req.payload;
+  if (!putData.name) {
     return res
       .response({
         status: 'fail',
@@ -51,3 +49,5 @@ export const PutController: any = (req: Request, res: ResponseToolkit) => {
     // Tidak dispesifikasikan
   }
 };
+
+module.exports = PutController;

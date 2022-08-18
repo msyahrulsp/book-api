@@ -1,12 +1,9 @@
-import { Request, ResponseToolkit } from '@hapi/hapi';
-import data from '../data';
-import IBook from '../interfaces/IBook';
-import IPostBook from '../interfaces/IPostBook';
-import { v4 as uuidv4 } from 'uuid';
+const data = require('../data');
+var nanoid = require('nanoid');
 
-export const PostController: any = (req: Request, res: ResponseToolkit) => {
-  const postData = req.payload as IPostBook;
-  if (postData.name === undefined) {
+const PostController = (req, res) => {
+  const postData = req.payload;
+  if (!postData.name) {
     return res
       .response({
         status: 'fail',
@@ -24,8 +21,8 @@ export const PostController: any = (req: Request, res: ResponseToolkit) => {
       .code(400);
   }
   try {
-    const newBook: IBook = {
-      id: uuidv4(),
+    const newBook = {
+      id: nanoid(),
       name: postData.name,
       year: postData.year,
       author: postData.author,
@@ -48,7 +45,7 @@ export const PostController: any = (req: Request, res: ResponseToolkit) => {
         },
       })
       .code(201);
-  } catch {
+  } catch (err) {
     return res
       .response({
         status: 'fail',
@@ -57,3 +54,5 @@ export const PostController: any = (req: Request, res: ResponseToolkit) => {
       .code(500);
   }
 };
+
+module.exports = PostController;

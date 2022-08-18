@@ -1,10 +1,8 @@
-import { Request, ResponseToolkit } from '@hapi/hapi';
-import data from '../data';
-import IBook from '../interfaces/IBook';
+const data = require('../data');
 
-export const DelController: any = (req: Request, res: ResponseToolkit) => {
+const DelController = (req, res) => {
   const { bookId } = req.params;
-  const book = data.find((book: IBook) => book.id === bookId);
+  const book = data.find((book) => book.id === bookId);
   if (book == null) {
     return res
       .response({
@@ -23,3 +21,5 @@ export const DelController: any = (req: Request, res: ResponseToolkit) => {
     // Tidak dispesifikasikan
   }
 };
+
+module.exports = DelController;

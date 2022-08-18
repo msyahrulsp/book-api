@@ -3,16 +3,13 @@
     "browser": true,
     "es2021": true
   },
-  "extends": ["prettier", "standard-with-typescript"],
+  "extends": ["prettier"],
   "plugins": ["prettier"],
   "overrides": [],
   "parserOptions": {
-    "project": "./tsconfig.json"
+    "ecmaVersion": "latest",
+    "sourceType": "module"
   },
   "rules": {
-    "@typescript-eslint/semi": ["error", "always"],
-    "@typescript-eslint/no-var-requires": "off",
-    "@typescript-eslint/strict-boolean-expressions": "off",
-    "eqeqeq": "off"
   }
 }

@@ -1,10 +1,8 @@
-import { Request, ResponseToolkit } from '@hapi/hapi';
-import data from '../data';
-import IBook from '../interfaces/IBook';
+const data = require('../data');
 
-export const GetController: any = (req: Request, res: ResponseToolkit) => {
+const GetController = (req, res) => {
   const { name, reading, finished } = req.query;
-  const fBook = data.filter((book: IBook) => {
+  const fBook = data.filter((book) => {
     return (
       book.name
         .toLowerCase()
@@ -18,7 +16,7 @@ export const GetController: any = (req: Request, res: ResponseToolkit) => {
     .response({
       status: 'success',
       data: {
-        books: fBook.map((book: IBook) => {
+        books: fBook.map((book) => {
           return {
             id: book.id,
             name: book.name,
@@ -30,9 +28,9 @@ export const GetController: any = (req: Request, res: ResponseToolkit) => {
     .code(200);
 };
 
-export const GetOneController: any = (req: Request, res: ResponseToolkit) => {
+const GetOneController = (req, res) => {
   const { bookId } = req.params;
-  const book = data.find((book: IBook) => book.id === bookId);
+  const book = data.find((book) => book.id === bookId);
 
   if (book != null) {
     return res
@@ -52,3 +50,5 @@ export const GetOneController: any = (req: Request, res: ResponseToolkit) => {
       .code(404);
   }
 };
+
+module.exports = { GetController, GetOneController };

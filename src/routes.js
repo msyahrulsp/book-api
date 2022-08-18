@@ -1,11 +1,12 @@
-import IRoutes from './interfaces/IRoutes';
+const PostController = require('./controllers/PostController');
+const {
+  GetController,
+  GetOneController,
+} = require('./controllers/GetController');
+const PutController = require('./controllers/PutController');
+const DelController = require('./controllers/DelController');
 
-import { PostController } from './controllers/PostController';
-import { GetController, GetOneController } from './controllers/GetController';
-import { PutController } from './controllers/PutController';
-import { DelController } from './controllers/DelController';
-
-const routes: IRoutes[] = [
+const routes = [
   {
     method: 'POST',
     path: '/books',
@@ -45,4 +46,4 @@ const routes: IRoutes[] = [
   },
 ];
 
-export default routes;
+module.exports = routes;
