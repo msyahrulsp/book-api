@@ -3,11 +3,22 @@ import data from '../data';
 import IBook from '../interfaces/IBook';
 
 export const GetController: any = (req: Request, res: ResponseToolkit) => {
+  const { name, reading, finished } = req.query;
+  const fBook = data.filter((book: IBook) => {
+    return (
+      book.name
+        .toLowerCase()
+        .includes(name ? name.toLowerCase() : book.name.toLowerCase()) &&
+      book.reading == (reading ?? book.reading) &&
+      book.finished == (finished ?? book.finished)
+    );
+  });
+
   return res
     .response({
       status: 'success',
       data: {
-        books: data.map((book: IBook) => {
+        books: fBook.map((book: IBook) => {
           return {
             id: book.id,
             name: book.name,
