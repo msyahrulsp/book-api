@@ -1,12 +1,23 @@
 import IRoutes from './interfaces/IRoutes';
 
 import { PostController } from './controllers/PostController';
+import { GetController, GetOneController } from './controllers/GetController';
 
 const routes: IRoutes[] = [
   {
     method: 'POST',
     path: '/books',
     handler: PostController,
+  },
+  {
+    method: 'GET',
+    path: '/books',
+    handler: GetController,
+  },
+  {
+    method: 'GET',
+    path: '/books/{bookId}',
+    handler: GetOneController,
   },
   {
     method: '*',
