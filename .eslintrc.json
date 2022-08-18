@@ -10,7 +10,7 @@
     "project": "./tsconfig.json"
   },
   "rules": {
-    "prettier/prettier": ["error"],
-    "@typescript-eslint/semi": ["error", "always"]
+    "@typescript-eslint/semi": ["error", "always"],
+    "@typescript-eslint/no-var-requires": "off"
   }
 }
